@@ -33,9 +33,13 @@ public class GrapheParListes extends Graphe {
      *        font pas partie du graphe
      */
     public GrapheParListes(int nbSommets, double ponderationArcsAbsents) {
-        //
-        // Exercice 2
-        //
+        this.nbSommets=nbSommets;
+        this.ponderationArcsAbsents=ponderationArcsAbsents;
+        listes=new ArrayList<ArrayList<Arc>>();
+        for(int i=0;i<nbSommets;i++){
+            ArrayList<Arc> arcs=new ArrayList<Arc>();
+            listes.add(i,arcs);
+        }
     }
 
 
@@ -44,9 +48,7 @@ public class GrapheParListes extends Graphe {
      */
     @Override
     public void ajouterArc(int initial, int terminal, double ponderation) {
-        //
-        // Exercice 2
-        //
+        listes.get(initial).add(new Arc(initial,terminal,ponderation));
     }
 
 
@@ -58,7 +60,7 @@ public class GrapheParListes extends Graphe {
         //
         // Exercice 2
         //
-        return null;
+        return listes.get(sommet).iterator();
     }
 
 
@@ -74,6 +76,14 @@ public class GrapheParListes extends Graphe {
         //
         // Exercice 2
         //
+        ArrayList<Arc> listArc=listes.get(initial);
+        int i = 0;
+        while (i<listArc.size()){
+            Arc arc=listArc.get(i++);
+            if(arc.initial==initial&&arc.terminal==terminal){
+                return arc;
+            }
+        }
         return null;
     }
 
@@ -86,7 +96,8 @@ public class GrapheParListes extends Graphe {
         //
         // Exercice 2
         //
-        return 0.0;
+        Arc arc=trouverArc(initial,terminal);
+        return arc!=null?arc.ponderation:this.ponderationArcsAbsents;
     }
 
     /**

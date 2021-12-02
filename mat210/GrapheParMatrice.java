@@ -64,7 +64,9 @@ public class GrapheParMatrice extends Graphe {
         //
         ArrayList<Arc> arrayList=new ArrayList<Arc>();
         for(int i=0;i<nbSommets;i++){
-            arrayList.add(new Arc(sommet,i,m[sommet][i]));
+            if(m[sommet][i]!=ponderationArcsAbsents){
+                arrayList.add(new Arc(sommet,i,m[sommet][i]));
+            }
         }
         return arrayList.iterator();
     }
