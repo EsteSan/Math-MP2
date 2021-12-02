@@ -141,12 +141,12 @@ public abstract class Graphe {
      * @return un tableau décrivant un chemin dans le graphe
      */
     public ArrayList<Integer> tableauPredecesseurVersChemin(
-            ArrayList<Integer> predecesseur, 
+            ArrayList<Integer> predecesseur, int depart,
             int destination) {
         System.out.println(predecesseur);
         ArrayList<Integer> arrayList =new ArrayList<Integer>();
         int i=destination;
-        while (i!=0){
+        while (i!=depart){
             arrayList.add(0,predecesseur.get(i));
             i=predecesseur.get(i);
         }
@@ -196,7 +196,7 @@ public abstract class Graphe {
             n= L_notFound.indexOf(Collections.min(L_notFound));
         }
 
-        return tableauPredecesseurVersChemin(P,destination);
+        return tableauPredecesseurVersChemin(P,depart,destination);
     }
 
 
