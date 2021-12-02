@@ -6,9 +6,9 @@ package mat210;
  * @author Xavier Provençal
  *
  * Modifications par les étudiant.e.s : 
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
+ *  - Esteban Sanchez
+ *  - Tristan Fecteau
+ *  - Anyin Zhang
  */
 
 import java.util.ArrayList;
@@ -57,9 +57,6 @@ public class GrapheParListes extends Graphe {
      */
     @Override
     public Iterator<Arc> getArcs(int sommet) {
-        //
-        // Exercice 2
-        //
         return listes.get(sommet).iterator();
     }
 
@@ -73,9 +70,6 @@ public class GrapheParListes extends Graphe {
      *         existe, null sinon.
      */
     private Arc trouverArc(int initial, int terminal) {
-        //
-        // Exercice 2
-        //
         ArrayList<Arc> listArc=listes.get(initial);
         int i = 0;
         while (i<listArc.size()){
@@ -93,9 +87,6 @@ public class GrapheParListes extends Graphe {
      */
     @Override
     public double getPonderation(int initial, int terminal) {
-        //
-        // Exercice 2
-        //
         Arc arc=trouverArc(initial,terminal);
         return arc!=null?arc.ponderation:this.ponderationArcsAbsents;
     }

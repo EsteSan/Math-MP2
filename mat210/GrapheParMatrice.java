@@ -6,9 +6,9 @@ package mat210;
  * @author Xavier Provençal
  *
  * Modifications par les étudiant.e.s : 
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
- *  - TODO inscrivez vos noms ici.
+ *  - Esteban Sanchez
+ *  - Tristan Fecteau
+ *  - Anyin Zhang
  */
 
 import java.lang.reflect.Array;
@@ -59,9 +59,6 @@ public class GrapheParMatrice extends Graphe {
      */
     @Override
     public Iterator<Arc> getArcs(int sommet) {
-        // 
-        // Exercice 1
-        //
         ArrayList<Arc> arrayList=new ArrayList<Arc>();
         for(int i=0;i<nbSommets;i++){
             if(m[sommet][i]!=ponderationArcsAbsents){
@@ -77,9 +74,6 @@ public class GrapheParMatrice extends Graphe {
      */
     @Override
     public double getPonderation(int initial, int terminal) {
-        // 
-        // Exercice 1
-        //
         return m[initial][terminal];
     }
 
