@@ -137,6 +137,7 @@ public abstract class Graphe {
      * La dernière case est le sommet `destination`.
      *
      * @param predecesseur tableau calculé par l'algorithme de Dijkstra
+     * @param depart le sommet où le chemin commance
      * @param destination le sommet où le chemin termine
      * @return un tableau décrivant un chemin dans le graphe
      */
