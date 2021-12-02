@@ -11,9 +11,12 @@ package mat210;
  *  - TODO inscrivez vos noms ici.
  */
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Implémentation de graphes représentés par des listes d'adjacences.
@@ -31,9 +34,14 @@ public class GrapheParMatrice extends Graphe {
      *        font pas partie du graphe
      */
     public GrapheParMatrice(int nbSommets, double ponderationArcsAbsents) {
-        // 
-        // Exercice 1
-        //
+        this.nbSommets=nbSommets;
+        this.ponderationArcsAbsents=ponderationArcsAbsents;
+        this.m=new double[nbSommets][nbSommets];
+        for(int i=0;i<nbSommets;i++){
+            for(int j=0;j<nbSommets;j++){
+                m[i][j]=ponderationArcsAbsents;
+            }
+        }
     }
 
 
@@ -42,9 +50,7 @@ public class GrapheParMatrice extends Graphe {
      */
     @Override
     public void ajouterArc(int initial, int terminal, double ponderation) {
-        // 
-        // Exercice 1
-        //
+        m[initial][terminal]=ponderation;
     }
 
 
@@ -56,7 +62,11 @@ public class GrapheParMatrice extends Graphe {
         // 
         // Exercice 1
         //
-        return null;
+        ArrayList<Arc> arrayList=new ArrayList<Arc>();
+        for(int i=0;i<nbSommets;i++){
+            arrayList.add(new Arc(sommet,i,m[sommet][i]));
+        }
+        return arrayList.iterator();
     }
 
 
@@ -68,7 +78,7 @@ public class GrapheParMatrice extends Graphe {
         // 
         // Exercice 1
         //
-        return 0.0;
+        return m[initial][terminal];
     }
 
 
