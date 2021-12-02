@@ -150,8 +150,8 @@ public abstract class Graphe {
             arrayList.add(0,predecesseur.get(i));
             i=predecesseur.get(i);
         }
-
-        return predecesseur;
+        System.out.println(arrayList);
+        return arrayList;
     }
 
 
