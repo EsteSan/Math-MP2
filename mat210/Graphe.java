@@ -143,10 +143,15 @@ public abstract class Graphe {
     public ArrayList<Integer> tableauPredecesseurVersChemin(
             ArrayList<Integer> predecesseur, 
             int destination) {
-        //
-        // Exercice 3
-        //
-        return null; 
+        System.out.println(predecesseur);
+        ArrayList<Integer> arrayList =new ArrayList<Integer>();
+        int i=destination;
+        while (i!=0){
+            arrayList.add(0,predecesseur.get(i));
+            i=predecesseur.get(i);
+        }
+
+        return predecesseur;
     }
 
 
@@ -163,11 +168,35 @@ public abstract class Graphe {
      */
     public ArrayList<Integer> DijkstraParArrayList(int depart, int destination)
     {
-        // 
-        // Exercice 4
-        //
-        //return tableauPredecesseurVersChemin(predecesseur, destination);
-        return null;
+        ArrayList<Integer> S=new ArrayList<Integer>(nbSommets);
+        ArrayList<Integer> P=new ArrayList<Integer>(nbSommets);
+        ArrayList<Double> L=new ArrayList<Double>(nbSommets);
+        ArrayList<Double> L_notFound=new ArrayList<Double>(nbSommets);
+        for (int i=0;i<nbSommets;i++){
+            P.add(i);
+            L.add(Double.POSITIVE_INFINITY);
+            L_notFound.add(Double.POSITIVE_INFINITY);
+        }
+        int n=depart;
+        L.set(n,0.0);
+        L_notFound.set(n,0.0);
+        while (n!=destination){
+            Iterator<Arc> arcIterator=getArcs(n);
+            while (arcIterator.hasNext()){
+                Arc arc=arcIterator.next();
+                Double ponderation_plus=arc.ponderation+L.get(n);
+                if(ponderation_plus<L.get(arc.terminal)){
+                    P.set(arc.terminal,n);
+                    L.set(arc.terminal,ponderation_plus);
+                    L_notFound.set(arc.terminal,ponderation_plus);
+                }
+            }
+            L_notFound.set(n,Double.POSITIVE_INFINITY);
+            S.add(n);
+            n= L_notFound.indexOf(Collections.min(L_notFound));
+        }
+
+        return tableauPredecesseurVersChemin(P,destination);
     }
 
 
