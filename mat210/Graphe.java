@@ -142,17 +142,90 @@ public abstract class Graphe {
      * @return un tableau décrivant un chemin dans le graphe
      */
     public ArrayList<Integer> tableauPredecesseurVersChemin(
-            ArrayList<Integer> predecesseur, int depart,
+            ArrayList<Integer> predecesseur,
             int destination) {
-        System.out.println(predecesseur);
-        ArrayList<Integer> arrayList =new ArrayList<Integer>();
+        ArrayList<Integer> chemin =new ArrayList<Integer>();
         int i=destination;
-        while (i!=depart){
-            arrayList.add(0,predecesseur.get(i));
+        while (i!=-1){
+            chemin.add(i);
             i=predecesseur.get(i);
         }
-        System.out.println(arrayList);
-        return arrayList;
+         Collections.reverse(chemin);
+        return chemin;
+    }
+
+    /**
+     * Retourne le chemin minimal
+     *
+     * @param  L Liste de la pondérations des chemins à partir du point de départ
+     * @param  S tableau booléen des Sommets dont on a trouvé le minimum
+     * @return un chemin minimal de `depart` à `destination`
+     */
+    public int TrouverSommetMinimum(ArrayList<Double> L, boolean[] S)
+    {
+        int i=0;
+        double plusPetitTrouver=Double.POSITIVE_INFINITY;
+        int indexMinimum=-1;
+        while (i<nbSommets) {
+            if(!S[i]){
+                double actuel=L.get(i);
+                if(plusPetitTrouver>=actuel){
+                    plusPetitTrouver=actuel;
+                    indexMinimum=i;
+                }
+            }
+            i++;
+        }
+        return indexMinimum;
+    }
+
+    /**
+     * Retourne le chemin minimal
+     *
+     * @param  L Liste de la pondérations des chemins à partir du point de départ
+     * @param  S tableau booléen des Sommets dont on a trouvé le minimum
+     * @return un chemin minimal de `depart` à `destination`
+     */
+    public int TrouverSommetMinimum(ArrayList<Double> L, ArrayList<Integer> S)
+    {
+        int i=0;
+        double plusPetitTrouver=Double.POSITIVE_INFINITY;
+        int indexMinimum=-1;
+        while (i<nbSommets) {
+            if(!S.contains(i)){
+                double actuel=L.get(i);
+                if(plusPetitTrouver>=actuel){
+                    plusPetitTrouver=actuel;
+                    indexMinimum=i;
+                }
+            }
+            i++;
+        }
+        return indexMinimum;
+    }
+    /**
+     * Retourne le chemin minimal
+     *
+     * @param  L Liste de la pondérations des chemins à partir du point de départ
+     * @param  S tableau booléen des Sommets dont on a trouvé le minimum
+     * @return un chemin minimal de `depart` à `destination`
+     */
+    public int TrouverSommetMinimum(ArrayList<Double> L, TreeSet<Integer> S)
+    {
+        int i=0;
+        double plusPetitTrouver=Double.POSITIVE_INFINITY;
+        int indexMinimum=-1;
+        while (i<nbSommets) {
+            if(!S.contains(i)){
+                double actuel=L.get(i);
+                if(plusPetitTrouver>=actuel){
+                    plusPetitTrouver=actuel;
+                    indexMinimum=i;
+                }
+            }
+            i++;
+        }
+        return indexMinimum;
     }
 
 
@@ -172,15 +245,13 @@ public abstract class Graphe {
         ArrayList<Integer> S=new ArrayList<Integer>(nbSommets);
         ArrayList<Integer> P=new ArrayList<Integer>(nbSommets);
         ArrayList<Double> L=new ArrayList<Double>(nbSommets);
-        ArrayList<Double> L_notFound=new ArrayList<Double>(nbSommets);
         for (int i=0;i<nbSommets;i++){
             P.add(i);
             L.add(Double.POSITIVE_INFINITY);
-            L_notFound.add(Double.POSITIVE_INFINITY);
         }
         int n=depart;
+        P.set(n,-1);
         L.set(n,0.0);
-        L_notFound.set(n,0.0);
         while (n!=destination){
             Iterator<Arc> arcIterator=getArcs(n);
             while (arcIterator.hasNext()){
@@ -189,15 +260,13 @@ public abstract class Graphe {
                 if(ponderation_plus<L.get(arc.terminal)){
                     P.set(arc.terminal,n);
                     L.set(arc.terminal,ponderation_plus);
-                    L_notFound.set(arc.terminal,ponderation_plus);
                 }
             }
-            L_notFound.set(n,Double.POSITIVE_INFINITY);
             S.add(n);
-            n= L_notFound.indexOf(Collections.min(L_notFound));
+            n= TrouverSommetMinimum(L,S);
         }
 
-        return tableauPredecesseurVersChemin(P,depart,destination);
+        return tableauPredecesseurVersChemin(P,destination);
     }
 
 
@@ -213,11 +282,31 @@ public abstract class Graphe {
      * @return un chemin minimal de `depart` à `destination`
      */
     public ArrayList<Integer> DijkstraParTreeSet(int depart, int destination) {
-        // 
-        // Exercice 5
-        //
-        //return tableauPredecesseurVersChemin(predecesseur, destination);
-        return null;
+        TreeSet<Integer> S=new TreeSet<Integer>();
+        ArrayList<Integer> P=new ArrayList<Integer>(nbSommets);
+        ArrayList<Double> L=new ArrayList<Double>(nbSommets);
+        for (int i=0;i<nbSommets;i++){
+            P.add(i);
+            L.add(Double.POSITIVE_INFINITY);
+        }
+        int n=depart;
+        P.set(n,-1);
+        L.set(n,0.0);
+        while (n!=destination){
+            Iterator<Arc> arcIterator=getArcs(n);
+            while (arcIterator.hasNext()){
+                Arc arc=arcIterator.next();
+                Double ponderation_plus=arc.ponderation+L.get(n);
+                if(ponderation_plus<L.get(arc.terminal)){
+                    P.set(arc.terminal,n);
+                    L.set(arc.terminal,ponderation_plus);
+                }
+            }
+            S.add(n);
+            n= TrouverSommetMinimum(L,S);
+        }
+
+        return tableauPredecesseurVersChemin(P,destination);
     }
 
 
@@ -233,11 +322,32 @@ public abstract class Graphe {
      * @return un chemin minimal de `depart` à `destination`
      */
     public ArrayList<Integer> DijkstraParBooleanArray(int depart, int destination) {
-        // 
-        // Exercice 6
-        //
-        //return tableauPredecesseurVersChemin(predecesseur, destination);
-        return null;
+        boolean[] S=new boolean[nbSommets];
+        ArrayList<Integer> P=new ArrayList<Integer>(nbSommets);
+        ArrayList<Double> L=new ArrayList<Double>(nbSommets);
+        for (int i=0;i<nbSommets;i++){
+            S[i]=false;
+            P.add(i);
+            L.add(Double.POSITIVE_INFINITY);
+        }
+        int n=depart;
+        P.set(n,-1);
+        L.set(n,0.0);
+        while (n!=destination){
+            Iterator<Arc> arcIterator=getArcs(n);
+            while (arcIterator.hasNext()){
+                Arc arc=arcIterator.next();
+                Double ponderation_plus=arc.ponderation+L.get(n);
+                if(ponderation_plus<L.get(arc.terminal)){
+                    P.set(arc.terminal,n);
+                    L.set(arc.terminal,ponderation_plus);
+                }
+            }
+            S[n]=true;
+            n=TrouverSommetMinimum(L,S);
+        }
+
+        return tableauPredecesseurVersChemin(P,destination);
     }
 
     /**
