@@ -4,7 +4,7 @@
 # Anyin Zhang
 
 Algorithme types : 
-- Dijkstra par ArrayList :  O(1)*O(n)
+- Dijkstra par ArrayList :    O(1)*O(n)
 - Dijkstra par TreeSet:       O(nlog(n)) 
 - Dijkstra par BooleanArray:  O(1)
 
