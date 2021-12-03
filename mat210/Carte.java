@@ -586,13 +586,14 @@ public class Carte {
 
         // chemin et noms des fichiers des images utilisées comme tuiles
         private static final String cheminVersImages = "./tuiles/";
+
         private static final String fichierPlaine    = cheminVersImages + "plaine.png";
         private static final String fichierColline   = cheminVersImages + "colline.png";
         private static final String fichierMontagne  = cheminVersImages + "montagne.png";
         private static final String fichierEau       = cheminVersImages + "eau.png";
 
 
-        // 
+        //
         // Variables d'instance
         //
 
