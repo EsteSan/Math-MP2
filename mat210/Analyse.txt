@@ -4,7 +4,7 @@
 # Anyin Zhang
 
 Algorithme types : 
-- Dijkstra par ArrayList :    O(1)*O(n)  
+- Dijkstra par ArrayList :  O(1)*O(n)
 - Dijkstra par TreeSet:       O(nlog(n)) 
 - Dijkstra par BooleanArray:  O(1)
 
@@ -29,8 +29,8 @@ Par la mode de représentation du graphe Liste:
   Calcul du chemin minimum : 118.53us
 
 Analyse : Pour la carte 3x2.png, par la mode de représentation du graphe Liste, l'algorithme type 
-          Dijkstra par BooleanArray est plus efficase que les autres. En géneral, ça coût moins 
-          de temps pour calculer et afficger le graphe.
+          Dijkstra par BooleanArray est plus efficace que les autres. En general, ça coût moins
+          de temps pour calculer et afficher le graphe.
 
 Par la mode de représentation du graphe Matrice:
 - Dijkstra par ArrayList : 
@@ -47,19 +47,19 @@ Par la mode de représentation du graphe Matrice:
   Calcul du chemin minimum : 521.09us
 
 Analyse : Pour la carte 3x2.png, par la mode de représentation du graphe Matrice, l'algorithme type 
-          Dijkstra par TreeSet est plus efficase que les autres méthodes. Cette méthode prend moins 
+          Dijkstra par TreeSet est plus efficace que les autres méthodes. Cette méthode prend moins
           de temps à calculer.
 
-Conclusion : En utilisant le mode de Matrice pour représenter la graphe, cela prend moins de temps que 
-             le mode de Liste. Et l'algorithme de DijkstraParTreeSet est plus efficase de calculer du 
-             chemin minimum par rapport à les autres algorithmes. 
-             On peut utiliser la grand O pour ordonner les fonctions à partir de leur taux de croissance.
-             Le grand O du l'algorithme de DijkstraParTreeSet est O(nlog(n)), est leur taux de croissance
+Conclusion : En utilisant le mode de Matrice pour représenter le graphe, cela prend moins de temps que
+             le mode de Liste. Et l'algorithme de DijkstraParTreeSet est plus efficace de calculer du
+             chemin minimum par rapport aux autres algorithmes.
+             On peut utiliser le grand O pour ordonner les fonctions à partir de leur taux de croissance.
+             Le grand O de l'algorithme de DijkstraParTreeSet est O(nlog(n)), est leur taux de croissance
              est plus grand que O(n) et O(1). De plus, comparer à l'algorithme de DijkstraParArrayList, 
-             Dijkstra par BooleanArray est plus rapide en caculant le temps. 
+             Dijkstra par BooleanArray est plus rapide en calculant le temps.
              Par ailleurs, la représentation du graphe est également importante. Le graphe représenté par 
              une matrice est meilleur en calculant le temps que la liste. Dans une liste, il est possible 
-             que le sommet représente pluseieurs fois dans la liste, donc cela augmente le temps d'analyse
+             que le sommet représente plusieurs fois dans la liste, donc cela augmente le temps d'analyse
              et de calcul du temps. 
 
 
