@@ -12,7 +12,7 @@ Mode de représentation du graphe :
 - Liste
 - Matrice
 
-Exemple 3x2.png par point départ (0,0) et point arrivee (1,2):
+Exemple :  3x2.png par point départ (0,0) et point arrivee (1,2):
 
 Par la mode de représentation du graphe Liste:
 - Dijkstra par ArrayList : 
