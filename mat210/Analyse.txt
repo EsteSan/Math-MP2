@@ -1,6 +1,6 @@
 # MAT210 - MiniProjet2 - Exercice7 #
 # Esteban Sanchez, 
-# Tristan Fecteau
+# Tristan Fecteau,
 # Anyin Zhang
 
 Algorithme types : 
@@ -14,7 +14,7 @@ Mode de représentation du graphe :
 
 Exemple 3x2.png départ (0,0) et arrivee (1,2): 
 
-Par la mode de représentation du graphe Liste: 
+Par la mode de représentation du graphe Liste:
 - Dijkstra par ArrayList : 
   Cout total du chemin : 3.828 
   Afficher du résultat dans le fichier : 19.71ms
