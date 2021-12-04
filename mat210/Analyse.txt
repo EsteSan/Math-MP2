@@ -3,46 +3,46 @@
 # Tristan Fecteau,
 # Anyin Zhang
 
-Algorithme types : 
-- Dijkstra par ArrayList :    O(1)*O(n)
+Algorithme types (Pour trouver le sommet suivant) : 
+- Dijkstra par ArrayList :    O(n^2)
 - Dijkstra par TreeSet:       O(nlog(n)) 
-- Dijkstra par BooleanArray:  O(1)
+- Dijkstra par BooleanArray:  O(n)
 
 Mode de représentation du graphe : 
 - Liste
 - Matrice
 
-Exemple :  3x2.png par point départ (0,0) et point arrivee (1,2):
+Exemple :  40x25.png par point départ (10,30) et point arrivee (24,0):
 
 Par la mode de représentation du graphe Liste:
 - Dijkstra par ArrayList : 
-  Cout total du chemin : 3.828 
-  Afficher du résultat dans le fichier : 19.71ms
-  Calcul du chemin minimum : 166.08us
+  Cout total du chemin : 36.62741699796952 
+  Afficher du résultat dans le fichier : 647.72 ms
+  Calcul du chemin minimum : 350.19 ms
 - Dijkstra par TreeSet:
-  Cout total du chemin : 3.828 
-  Afficher du résultat dans le fichier : 5.8ms
-  Calcul du chemin minimum : 1.37ms
+  Cout total du chemin : 36.62741699796952
+  Afficher du résultat dans le fichier : 85.22 ms
+  Calcul du chemin minimum : 53.53 ms
 - Dijkstra par BooleanArray:  
-  Cout total du chemin : 3.828 
-  Afficher du résultat dans le fichier : 6.72ms
-  Calcul du chemin minimum : 118.53us
+  Cout total du chemin : 36.62741699796952
+  Afficher du résultat dans le fichier : 80.09 ms
+  Calcul du chemin minimum : 10.01 ms
 
-Analyse : Pour la carte 3x2.png, par la mode de représentation du graphe Liste, l'algorithme type 
+Analyse : Pour la carte 40x25.png, par la mode de représentation du graphe Liste, l'algorithme type 
           Dijkstra par BooleanArray est plus efficace que les autres. En general, ça coût moins
-          de temps pour calculer et afficher le graphe.
+          de temps pour calculer et afficher le graphe. Et plus la carte est grande plus l'écart se creuse.
 
 Par la mode de représentation du graphe Matrice:
 - Dijkstra par ArrayList : 
-  Cout total du chemin : 3.828 
-  Afficher du résultat dans le fichier : 4.92ms
-  Calcul du chemin minimum : 471.23us
+  Cout total du chemin : 36.62741699796952
+  Afficher du résultat dans le fichier : 612.96 ms
+  Calcul du chemin minimum : 349.12 ms
 - Dijkstra par TreeSet:
-  Cout total du chemin : 3.828 
-  Afficher du résultat dans le fichier : 3.99ms
-  Calcul du chemin minimum : 2.05us
+  Cout total du chemin : 36.62741699796952
+  Afficher du résultat dans le fichier : 69.44 ms
+  Calcul du chemin minimum : 68.47 ms
 - Dijkstra par BooleanArray:  
-  Cout total du chemin : 3.828 
+  Cout total du chemin : 36.62741699796952
   Afficher du résultat dans le fichier : 5.69ms
   Calcul du chemin minimum : 521.09us
 
@@ -51,15 +51,17 @@ Analyse : Pour la carte 3x2.png, par la mode de représentation du graphe Matric
           de temps à calculer.
 
 Conclusion : En utilisant le mode de Matrice pour représenter le graphe, cela prend moins de temps que
-             le mode de Liste. Et l'algorithme de DijkstraParTreeSet est plus efficace de calculer du
+             le mode de Liste. Et l'algorithme de DijkstraParBooleanArray est plus efficace pour calculer du
              chemin minimum par rapport aux autres algorithmes.
              On peut utiliser le grand O pour ordonner les fonctions à partir de leur taux de croissance.
-             Le grand O de l'algorithme de DijkstraParTreeSet est O(nlog(n)), est leur taux de croissance
-             est plus grand que O(n) et O(1). De plus, comparer à l'algorithme de DijkstraParArrayList, 
-             Dijkstra par BooleanArray est plus rapide en calculant le temps.
+             Le grand O pour trouver le prochain sommet à traiter de l'algorithme de DijkstraParArrayList est O(n^2),ce qui
+             est plus grand que O(n(log(n))) pour l'algorithme de DijkstraParTreeSet, et O(n) par BooleanArray.
              Par ailleurs, la représentation du graphe est également importante. Le graphe représenté par 
              une matrice est meilleur en calculant le temps que la liste. Dans une liste, il est possible 
              que le sommet représente plusieurs fois dans la liste, donc cela augmente le temps d'analyse
-             et de calcul du temps. 
+             et de calcul du temps. Par contre, Lorsque la carte est trop grande la matrice n'est plus une bonne option,
+             car elle prend beaucoup trop de place en mémoire. La meilleure solution est donc de prendre une liste, pour être certain
+             qu'on puisse traiter toutes les cartes.
+             En conclusion la meilleure combinaison est la représentation par liste avec un BooleanArray pour faire Dijkstra.
 
 
